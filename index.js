@@ -21,7 +21,13 @@ const headers = ['FirstName', 'LastName', 'EmailId', 'Status', 'SecurityRole1']
 
 const output = json2csv({ data: entries, fields: headers })
 
-fs.writeFile('output.csv', output, function (err) {
+const rows = output.split('\n');
+const header = rows.shift().replace(/"/g, '');
+rows.unshift(header);
+csv = rows.join('\n');
+
+
+fs.writeFile('output.csv', csv, function (err) {
   if (err) throw err
   console.log('File saved!')
 })
