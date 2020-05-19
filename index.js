@@ -20,12 +20,7 @@ const entries = Array(+program.number||NumGen).fill().map((_, i) => generate(pro
 const headers = ['FirstName', 'LastName', 'EmailId', 'Status', 'SecurityRole1']
 
 const output = json2csv({ data: entries, fields: headers })
-
-const rows = output.split('\n');
-const header = rows.shift().replace(/"/g, '');
-rows.unshift(header);
-csv = rows.join('\n');
-
+const csv = output.replace(/"/g, '');
 
 fs.writeFile('output.csv', csv, function (err) {
   if (err) throw err
