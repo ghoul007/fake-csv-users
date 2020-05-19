@@ -7,7 +7,7 @@ const rnd= () => Math.random() >.5
 const generate = (domain = null) => {
     const firstName = faker.name.firstName()
     const lastName = faker.name.lastName()
-    const email = `${firstName}${lastName}@${domain || DOMAIN}`
+    const email = `${firstName}${lastName}.${new Date().getTime()%10000}@${domain || DOMAIN}`.toLowerCase()
     const status = "Active"
     const securityRole1 = rnd() ? "IPD-USER" : "IPD-Administrator"
 
